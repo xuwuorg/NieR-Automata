@@ -1,8 +1,6 @@
 NieR-Automata
 ===========================
-## NieR-Automata
-尼尔·机械纪元外挂程序，
-庆祝我的粉毛情趣眼镜娘2021/05/05全成就毕业。
+## 庆祝我的粉毛情趣眼镜娘2021/05/05全成就毕业。
 ![a](https://github.com/xuwuorg/NieR-Automata/blob/main/img/a.png "a")
 ![b](https://github.com/xuwuorg/NieR-Automata/blob/main/img/b.png "b")
 ![c](https://github.com/xuwuorg/NieR-Automata/blob/main/img/c.png "c")
