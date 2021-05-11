@@ -3,13 +3,13 @@ NieR-Automata
 ## NieR-Automata
 尼尔·机械纪元外挂程序，
 庆祝我的粉毛情趣眼镜娘2021/05/05全成就毕业。
-![a](https://github.com/xuwuorg/NieR-Automata/blob/master/img/a.png "a")
-![b](https://github.com/xuwuorg/NieR-Automata/blob/master/img/b.png "b")
-![c](https://github.com/xuwuorg/NieR-Automata/blob/master/img/c.png "c")
-![d](https://github.com/xuwuorg/NieR-Automata/blob/master/img/d.png "d")
-![e](https://github.com/xuwuorg/NieR-Automata/blob/master/img/e.png "e")
-![f](https://github.com/xuwuorg/NieR-Automata/blob/master/img/f.png "f")
-![g](https://github.com/xuwuorg/NieR-Automata/blob/master/img/g.png "g")
+![a](https://github.com/xuwuorg/NieR-Automata/blob/main/img/a.png "a")
+![b](https://github.com/xuwuorg/NieR-Automata/blob/main/img/b.png "b")
+![c](https://github.com/xuwuorg/NieR-Automata/blob/main/img/c.png "c")
+![d](https://github.com/xuwuorg/NieR-Automata/blob/main/img/d.png "d")
+![e](https://github.com/xuwuorg/NieR-Automata/blob/main/img/e.png "e")
+![f](https://github.com/xuwuorg/NieR-Automata/blob/main/img/f.png "f")
+![g](https://github.com/xuwuorg/NieR-Automata/blob/main/img/g.png "g")
 
 ## 日志
 ## 2021/05/11
