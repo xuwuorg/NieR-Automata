@@ -10,6 +10,12 @@ NieR-Automata
 ![g](https://github.com/xuwuorg/NieR-Automata/blob/main/img/g.png "g")
 
 ## 日志
+## 2021/05/12
+提交了私有lib和.h能够正常编译圆满
+
+增加功能
+2. 人物满血              【关闭】
+
 ## 2021/05/11
 
 没有提交lib，暂时还编译不过。明天更新顺便再提交lib算了。
