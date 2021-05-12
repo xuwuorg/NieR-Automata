@@ -8,11 +8,11 @@ public:
     ~CRefit();
 
     void help();
-    void open_nier_automata();
-    void hp_max();
+    void open_nier_automata(); 
     void character_invincible();
+    void hp_9999();
     void hack_invincible();
-    void spike_max();
+    void attack_9999();
     void speed_max();
     void jmp_flyin();
     void module_1();

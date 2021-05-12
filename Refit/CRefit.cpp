@@ -50,7 +50,8 @@ CRefit::help()
         << L"0. 启动辅助             " << CURRENT_STATUS(m_start) << NEW_LINE
         << L"    -- 游戏内摁键盘数字并没有什么卵用的" << NEW_LINE << NEW_LINE
         << L"1. 人物免伤无敌         " << CURRENT_STATUS(m_invincible) << NEW_LINE
-        << L"2. 人物满血             " << CURRENT_STATUS(m_spike) << NEW_LINE
+        << L"2. HP 9999               " << CURRENT_STATUS(m_spike) << NEW_LINE
+        << L"    -- 都有无敌了HP随便意思下" << NEW_LINE
         << L"3. Hack无敌             " << CURRENT_STATUS(m_hack_invincible) << NEW_LINE
         << L"4. 屠龙宝刀 一刀999999  " << CURRENT_STATUS(m_spike) << NEW_LINE
         << L"    -- 在座的各位都是弟弟" << NEW_LINE << NEW_LINE
@@ -77,14 +78,7 @@ CRefit::open_nier_automata()
         open_game();
     } 
 }
-
-void 
-CRefit::hp_max()
-{
-    //hp = [[[0x000000014160DF98] + 0xC0 + 0x8] + 0x60] + 0x10668
-    //m_proc_mem.read_offset()
-}
-
+ 
 bool 
 CRefit::open_game()
 {
@@ -189,6 +183,47 @@ CRefit::close_character_invincible()
     return;
 }
 
+void
+CRefit::hp_9999()
+{
+    if (!m_start)
+    {
+        return;
+    }
+
+    //hp = [[[0x000000014160DF98] + 0xC0 + 0x8] + 0x60] + 0x10668
+    static LONGLONG hp_address = 0;
+    if (hp_address == 0)
+    {
+        bool bret = m_proc_mem.read_offset(0x160DF98, (unsigned char*)&hp_address, 0x8);
+        if (bret)
+        {
+            bret = m_proc_mem.read(hp_address + 0xC0 + 0x8, (unsigned char*)&hp_address, 0x8);
+            if (bret)
+            {
+                bret = m_proc_mem.read(hp_address + 0x60, (unsigned char*)&hp_address, 0x8);
+                if (bret)
+                {
+                    hp_address += 0x10668;
+                }
+            }
+        }
+
+        if (!bret)
+        {
+            hp_address = 0;
+        }
+    }
+
+    if (hp_address != 0)
+    {
+        ULONGLONG hp = 9999;
+        m_proc_mem.write(hp_address, (unsigned char*)&hp, 0x8, nullptr);
+    }
+
+    return;
+}
+
 void 
 CRefit::hack_invincible()
 {
@@ -206,7 +241,7 @@ CRefit::hack_invincible()
         open_hack_invincible();
     }
 }
-
+ 
 void 
 CRefit::open_hack_invincible()
 {
@@ -223,12 +258,17 @@ CRefit::close_hack_invincible()
     m_hack_invincible = !m_proc_mem.write_offset(0x20DB0A, szbuferr, 6, nullptr);
 }
 
-void 
-CRefit::spike_max()
+void
+CRefit::attack_9999()
 {
-    IS_START(m_spike);
-}
+    if (!m_start)
+    {
+        return;
+    }
 
+    return;
+}
+   
 void 
 CRefit::speed_max()
 {

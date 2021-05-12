@@ -20,18 +20,18 @@ int main()
             {
             case '0':
                 refit.open_nier_automata();
-                break;
+                break; 
             case '1':
-                refit.hp_max();
-                break;
-            case '2':
                 refit.character_invincible();
                 break;
+            case '2':
+                refit.hp_9999();
+                break;
             case '3':
-                refit.hack_invincible();
+                refit.hack_invincible(); 
                 break;
             case '4':
-                refit.spike_max();
+                refit.attack_9999();
                 break;
             case '5':
                 refit.speed_max();

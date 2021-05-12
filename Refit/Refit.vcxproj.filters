@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CRefit.cpp" />
+    <ClCompile Include="Refit.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CRefit.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="private">
+      <UniqueIdentifier>{d1ed24a0-0cef-4eb3-bbf9-a58a43569416}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
