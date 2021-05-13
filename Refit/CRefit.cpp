@@ -25,18 +25,15 @@ CRefit::CRefit()
     m_start = false;
     m_invincible = false;
     m_hack_invincible = false;
-    m_spike = false;
+    m_attack = false;
     m_speed = false;
-    m_flyin = false;
-    m_module = false;
-    m_max_props = false;
+    m_flyin = false;  
     
     memory_management::mem_zero(m_old_character, 0x6);
 }
 
 CRefit::~CRefit()
-{
-
+{ 
 }
 
 void 
@@ -50,18 +47,18 @@ CRefit::help()
         << L"0. 启动辅助             " << CURRENT_STATUS(m_start) << NEW_LINE
         << L"    -- 游戏内摁键盘数字并没有什么卵用的" << NEW_LINE << NEW_LINE
         << L"1. 人物免伤无敌         " << CURRENT_STATUS(m_invincible) << NEW_LINE
-        << L"2. HP 9999               " << CURRENT_STATUS(m_spike) << NEW_LINE
+        << L"2. HP 9999               " << NEW_LINE
         << L"    -- 都有无敌了HP随便意思下" << NEW_LINE
         << L"3. Hack无敌             " << CURRENT_STATUS(m_hack_invincible) << NEW_LINE
-        << L"4. 屠龙宝刀 一刀999999  " << CURRENT_STATUS(m_spike) << NEW_LINE
+        << L"4. 屠龙宝刀 一刀999999  " << CURRENT_STATUS(m_attack) << NEW_LINE
         << L"    -- 在座的各位都是弟弟" << NEW_LINE << NEW_LINE
         << L"5. 召唤翔哥附体         " << CURRENT_STATUS(m_speed) << NEW_LINE
         << L"    -- 翔哥是XXX最快的男人" << NEW_LINE
         << L"6. 武当梯云纵           " << CURRENT_STATUS(m_flyin) << NEW_LINE
         << L"    -- 秘诀，只要跳起来左脚踩右脚就能飞天" << NEW_LINE
-        << L"7. 芯片占1              " << CURRENT_STATUS(m_module) << NEW_LINE
+        << L"7. 芯片占1              " << NEW_LINE
         << L"    -- 宝刀未出一刀之下" << NEW_LINE
-        << L"8. 店铺开张             " << CURRENT_STATUS(m_max_props) << NEW_LINE
+        << L"8. 店铺开张             " << NEW_LINE
         << L"    -- 只要我已经有的物品都能变成99" << NEW_LINE;
     wprintf(L"%s", help.get_str());
 }
@@ -361,4 +358,21 @@ CRefit::max_props()
     {
         return;
     }
+
+    ULONGLONG props_base = m_proc_mem.get_base_address() + 0x194BF60;
+     
+    for (size_t i = 0; i < 0xFF; i++)
+    {
+        size_t pos = (i + i * 2) + 0xC159;
+        size_t props = props_base + (pos * 4) + 8;
+
+        DWORD max = 99;
+        bool bret = m_proc_mem.write(props, (unsigned char*)&max, 4);
+        if (!bret)
+        {
+            return;
+        }
+    }
+
+    return;
 }

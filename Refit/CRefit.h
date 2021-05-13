@@ -36,11 +36,9 @@ private:
     bool m_start;
     bool m_invincible;
     bool m_hack_invincible;
-    bool m_spike;
+    bool m_attack;
     bool m_speed;
-    bool m_flyin;
-    bool m_module;
-    bool m_max_props;
+    bool m_flyin;  
       
     xuwuorg::xprocess_memeory m_proc_mem;
     unsigned char m_old_character[6];
