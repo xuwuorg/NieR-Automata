@@ -272,7 +272,10 @@ CRefit::attack_9999()
 void 
 CRefit::speed_max()
 {
-    IS_START(m_speed);
+    if (!m_start)
+    {
+        return;
+    }
 }
 
 void 
@@ -297,7 +300,7 @@ void
 CRefit::open_jmp_flyin()
 {
     unsigned char szbuferr[6] = { 0xB8, 0x00, 0x00, 0x00, 0x00, 0x90 };
-    m_hack_invincible = m_proc_mem.write_offset(0x1BBA7E, szbuferr, 6, nullptr);
+    m_flyin = m_proc_mem.write_offset(0x1BBA7E, szbuferr, 6, nullptr);
     return;
 }
 
@@ -313,11 +316,49 @@ CRefit::close_jmp_flyin()
 void 
 CRefit::module_1()
 {
-    IS_START(m_module);
+    if (!m_start)
+    {
+        return;
+    }
+
+#define READ_ERR_RET(status) if (!status) return;
+
+    //00000001405EA6A3 | 4C:8D05 0AF5B000        | lea r8,qword ptr ds:[1410F9BB4]              |
+    //0000000140000000
+     
+    int countaa = 0;
+    ULONGLONG buffer1 = 0;
+    bool bret = m_proc_mem.read(m_proc_mem.get_base_address() + 0x10F9B90, (unsigned char*)&buffer1, 8);
+    for (size_t index = 0, count = 0; count < 0x12C; index += 0x30, count++)
+    {
+        DWORD tmp = 0;
+        bret = m_proc_mem.read(buffer1 + index + 0x1F54, (unsigned char*)&tmp, 4);
+        READ_ERR_RET(bret);
+        if (tmp == -1)
+        {
+            continue;
+        }
+
+        bret = m_proc_mem.read(buffer1 + index + 0x1F7C, (unsigned char*)&tmp, 4);
+        READ_ERR_RET(bret);
+        if (tmp != 0)
+        {
+            continue;
+        }
+
+        DWORD module_size = 1;
+        bret = m_proc_mem.write(buffer1 + index + 0x1F60, (unsigned char*)&module_size, 4);
+        READ_ERR_RET(bret);
+    }  
+
+    return;
 }
 
 void 
 CRefit::max_props()
 {
-    IS_START(m_max_props);
+    if (!m_start)
+    {
+        return;
+    }
 }

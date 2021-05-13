@@ -54,9 +54,9 @@ namespace xuwuorg
             字符串支持对wchar*，char*, bool, int, 等基础类型的构造使用
         */
         string();
-        string(const string& obj);
-
-        string(const wchar_t*); 
+        string(const string& obj); 
+        string(const wchar_t*);
+        string(DWORD);
         virtual ~string();
            
         string& operator = (const string& obj);
