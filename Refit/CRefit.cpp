@@ -7,8 +7,7 @@
 #include <xprocess.h>
 #include <xmodule.h>
 #include <xprocess_memeory.h>
-#include <xmemory.h>
-using namespace xuwuorg;
+#include <xmemory.h> 
   
 #include "CRefit.h"
 
@@ -29,7 +28,7 @@ CRefit::CRefit()
     m_speed = false;
     m_flyin = false;  
     
-    memory_management::mem_zero(m_old_character, 0x6);
+    xuwuorg::memory_management::mem_zero(m_old_character, 0x6);
 }
 
 CRefit::~CRefit()
@@ -81,8 +80,8 @@ CRefit::open_game()
 {
     do
     {
-        std::list<xprocess_tools::xprocess_info> pi_table;
-        size_t size = xprocess_tools::enum_process_from_name(L"NieRAutomata.exe", pi_table);
+        std::list<xuwuorg::xprocess_tools::xprocess_info> pi_table;
+        size_t size = xuwuorg::xprocess_tools::enum_process_from_name(L"NieRAutomata.exe", pi_table);
         if (size != 0)
         {
             auto pi = pi_table.begin();
@@ -94,11 +93,11 @@ CRefit::open_game()
                 break;
             }
 
-            std::list<xmodule::xmodule_info> mi;
-            size_t ret = xmodule::enum_process_module(pid, mi);
+            std::list<xuwuorg::xmodule::xmodule_info> mi;
+            size_t ret = xuwuorg::xmodule::enum_process_module(pid, mi);
             for (auto& it : mi)
             {
-                string module_name = string_file_path::get_short_name(it.get_full_name());
+                xuwuorg::string module_name = xuwuorg::string_file_path::get_short_name(it.get_full_name());
                 if (module_name.is_equal(L"NieRAutomata.exe"))
                 {
                     m_proc_mem.set_base_address((XADDRESS)it.get_base_address()); 
@@ -244,7 +243,7 @@ CRefit::open_hack_invincible()
 {
     //000000014020DB0A     | FF89 DC280100           | dec dword ptr ds:[rcx+128DC]            | 2. hk扣血地方分析入口1  真正中弹时扣血的地方，nop掉就是无敌
     unsigned char nop[6];
-    memory_management::mem_set(nop, 0x90, 6);
+    xuwuorg::memory_management::mem_set(nop, 0x90, 6);
     m_hack_invincible = m_proc_mem.write_offset(0x20DB0A, nop, 6, nullptr);
 }
 
@@ -358,6 +357,8 @@ CRefit::max_props()
     {
         return;
     }
+    //00000001407EA7A3 | 48:8D15 B6171601        | lea rdx,qword ptr ds:[14194BF60]             | 5. 这里应该是物品道具背包已存在物品数量的偏移算法出
+    //00000001405DCFF6 | 44:0140 08              | add dword ptr ds:[rax+8],r8d                 | 5. 这里是对物品扣除或增加数量的地方
 
     ULONGLONG props_base = m_proc_mem.get_base_address() + 0x194BF60;
      
