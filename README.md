@@ -10,6 +10,9 @@ NieR-Automata
 ![g](https://github.com/xuwuorg/NieR-Automata/blob/main/img/g.png "g")
 
 ## 日志
+## 2021/05/13
+7. 芯片占1               【关闭】
+
 ## 2021/05/12
 提交了私有lib和.h能够正常编译源码
 
