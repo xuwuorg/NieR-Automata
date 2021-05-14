@@ -265,6 +265,30 @@ CRefit::attack_9999()
         return;
     }
 
+    //0000000140684CF | E8 7792A3FF             | call nierautomata.1400BDF70                      | 7. ø’ ÷»ıπ•ª˜ [[[0x000000014160DF98] + 0xD70 + 0x8] + 0x60] + 0xAB8 + 0x20A0
+  
+    ULONGLONG attack_address = 0;
+    bool bret = m_proc_mem.read_offset(0x160DF98, (unsigned char*)&attack_address, 0x8);
+    if (bret)
+    {
+        bret = m_proc_mem.read(attack_address + 0xD70 + 0x8, (unsigned char*)&attack_address, 0x8);
+        if (bret)
+        {
+            bret = m_proc_mem.read(attack_address + 0x60, (unsigned char*)&attack_address, 0x8);
+            if (bret)
+            {
+                attack_address += (0xAB8 + 0x20A0);
+            }
+        }
+    }
+
+    if (!bret)
+    {
+        return;
+    }
+
+    DWORD attack = 999999;
+    m_proc_mem.write(attack_address, (unsigned char*)&attack, 0x4, nullptr);
     return;
 }
    
