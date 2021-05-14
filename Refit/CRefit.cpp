@@ -265,13 +265,13 @@ CRefit::attack_9999()
         return;
     }
 
-    //0000000140684CF | E8 7792A3FF             | call nierautomata.1400BDF70                      | 7. ¿ÕÊÖÈõ¹¥»÷ [[[0x000000014160DF98] + 0xD70 + 0x8] + 0x60] + 0xAB8 + 0x20A0
+    //0000000140684CF | E8 7792A3FF             | call nierautomata.1400BDF70                      | 7. ¹¥»÷ [[[0x000000014160DF98] + 0xC0 + 0x8] + 0x60] + 0xAB8 + 0x20A0
   
     ULONGLONG attack_address = 0;
     bool bret = m_proc_mem.read_offset(0x160DF98, (unsigned char*)&attack_address, 0x8);
     if (bret)
     {
-        bret = m_proc_mem.read(attack_address + 0xD70 + 0x8, (unsigned char*)&attack_address, 0x8);
+        bret = m_proc_mem.read(attack_address + 0xC0 + 0x8, (unsigned char*)&attack_address, 0x8);
         if (bret)
         {
             bret = m_proc_mem.read(attack_address + 0x60, (unsigned char*)&attack_address, 0x8);
