@@ -10,6 +10,9 @@ NieR-Automata
 ![g](https://github.com/xuwuorg/NieR-Automata/blob/main/img/g.png "g")
 
 ## 日志
+## 2021/05/15
+4. 屠龙宝刀 一刀999999   【关闭】
+
 ## 2021/05/13
 7. 芯片占1               【关闭】
 8. 店铺开张              【关闭】
