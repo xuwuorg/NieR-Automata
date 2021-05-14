@@ -10,13 +10,13 @@ namespace xuwuorg
     class xexp xprocess_memory_base
     {
     public:
-        xprocess_memory_base(); 
+        xprocess_memory_base();
         virtual ~xprocess_memory_base();
 
         void close();
 
         virtual bool open_process(DWORD) = 0;
-           
+
     protected:
         bool open(DWORD, DWORD);
 
@@ -31,12 +31,12 @@ namespace xuwuorg
             : m_base(0)
             , m_base_size(0)
         {};
-        virtual ~xprocess_offset() 
+        virtual ~xprocess_offset()
         {
             m_base = 0;
             m_base_size = 0;
         };
-         
+
         inline void set_base_address(XADDRESS p) { m_base = p; };
         inline XADDRESS get_base_address() { return m_base; };
 
@@ -47,15 +47,15 @@ namespace xuwuorg
         XADDRESS m_base;
         DWORD m_base_size;
     };
-     
-    class xexp xprocess_memory_read 
+
+    class xexp xprocess_memory_read
         : virtual public xprocess_memory_base
         , virtual public xprocess_offset
     {
     public:
         xprocess_memory_read();
         virtual ~xprocess_memory_read();
-        
+
         virtual bool open_process(DWORD);
 
         bool read(XADDRESS, unsigned char*, SIZE_T, SIZE_T* = nullptr);

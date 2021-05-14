@@ -187,7 +187,10 @@ CRefit::hp_9999()
         return;
     }
 
-    //hp = [[[0x000000014160DF98] + 0xC0 + 0x8] + 0x60] + 0x10668
+    //00000001405DC5F0 | E8 7B19AEFF             | call nierautomata.1400BDF70                  | 0. 最开始搜索人物HP时的地方 [[[0x000000014160DF98] + 0xC0 + 0x8] + 0x60]
+    //00000001400BDF8E | 48:C1E3 04 | shl rbx, 4 | 1. hp2 = [[[0x000000014160DF98]+ 0xC0 + 0x8] + 0x60] + 0x10668
+    //00000001400BDF92 | 48 : 031D FFFF5401 | add rbx, qword ptr ds : [14160DF98] | 1. hp人物基址[0x000000014160DF98] + 0xC0
+    
     static LONGLONG hp_address = 0;
     if (hp_address == 0)
     {

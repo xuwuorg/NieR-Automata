@@ -37,15 +37,7 @@ return m_##name
 #define TYPEDEF_SINGLE_STRING \
 char single[SINGLENTH] = "string";\
 memory_management::mem_move(m_single, single, SINGLENTH);
-
-#define TYPEDEF_SINGLE_FILE_HELP \
-char single[SINGLENTH] = "file_help";\
-memory_management::mem_move(m_single, single, SINGLENTH);
-
-#define TYPEDEF_SINGLE_FILE \
-char single[SINGLENTH] = "file";\
-memory_management::mem_move(m_single, single, SINGLENTH);
-
+  
 #define TYPEDEF_SINGLE_HEAD void init_single();
 #define TYPEDEF_SINGLE_FUN(class, single_type) void class::init_single(){single_type;};
 

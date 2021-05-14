@@ -7,9 +7,4 @@
   <ItemGroup>
     <ClInclude Include="CRefit.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Filter Include="private">
-      <UniqueIdentifier>{d1ed24a0-0cef-4eb3-bbf9-a58a43569416}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
 </Project>
