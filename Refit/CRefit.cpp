@@ -43,22 +43,15 @@ CRefit::help()
 
     xuwuorg::string help;
     help << L"尼尔机械纪元辅助 - 改装" << NEW_LINE << NEW_LINE
-        << L"0. 启动辅助             " << CURRENT_STATUS(m_start) << NEW_LINE
-        << L"    -- 游戏内摁键盘数字并没有什么卵用的" << NEW_LINE << NEW_LINE
-        << L"1. 人物免伤无敌         " << CURRENT_STATUS(m_invincible) << NEW_LINE
-        << L"2. HP 9999               " << NEW_LINE
-        << L"    -- 都有无敌了HP随便意思下" << NEW_LINE
-        << L"3. Hack无敌             " << CURRENT_STATUS(m_hack_invincible) << NEW_LINE
-        << L"4. 屠龙宝刀 一刀999999  " << CURRENT_STATUS(m_attack) << NEW_LINE
-        << L"    -- 在座的各位都是弟弟" << NEW_LINE << NEW_LINE
-        << L"5. 召唤翔哥附体         " << CURRENT_STATUS(m_speed) << NEW_LINE
-        << L"    -- 翔哥是XXX最快的男人" << NEW_LINE
-        << L"6. 武当梯云纵           " << CURRENT_STATUS(m_flyin) << NEW_LINE
-        << L"    -- 秘诀，只要跳起来左脚踩右脚就能飞天" << NEW_LINE
-        << L"7. 芯片占1              " << NEW_LINE
-        << L"    -- 宝刀未出一刀之下" << NEW_LINE
-        << L"8. 店铺开张             " << NEW_LINE
-        << L"    -- 只要我已经有的物品都能变成99" << NEW_LINE;
+        << L"0. 启动辅助      " << CURRENT_STATUS(m_start) << L" -- 外挂为非注入插件，所有操作都在当前控制台启动关闭" << NEW_LINE << NEW_LINE
+        << L"1. 人物免伤无敌  " << CURRENT_STATUS(m_invincible) << L" -- 不会被怪物攻击到" << NEW_LINE
+        << L"2. HP 9999       " << L"          -- 都有无敌了HP随便意思下" << NEW_LINE
+        << L"3. Hack无敌      " << CURRENT_STATUS(m_hack_invincible) << L" -- 9S人物使用hack时不会掉血" << NEW_LINE
+        << L"4. 攻击 999999   " << CURRENT_STATUS(m_attack) << L" -- 人物初始攻击给 999999" << NEW_LINE
+        << L"5. 召唤翔哥附体  " << CURRENT_STATUS(m_speed) << NEW_LINE
+        << L"6. 跳跃无限制    " << CURRENT_STATUS(m_flyin) << L" -- 不停的按跳跃你能上天" << NEW_LINE
+        << L"7. 芯片占1       " << L"          -- 当前背包的所有芯片大小设置为1" << NEW_LINE
+        << L"8. 背包物品99    " << L"          -- 当前背包中已有的物品数量设置为99" << NEW_LINE;
     wprintf(L"%s", help.get_str());
 }
 
