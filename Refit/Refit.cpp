@@ -49,7 +49,7 @@ int main()
             refit.help();
         }
 
-        Sleep(1000);
+        Sleep(300);
     } while (true);
 
     return 0;

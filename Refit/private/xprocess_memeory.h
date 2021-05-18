@@ -7,6 +7,9 @@ namespace xuwuorg
 #define XPROC_MEM_READ 1
 #define XPROC_MEM_WRITE 2 
 
+
+    //这个类其实就是ReadProcessMemory和WriteProcessMemory函数的二次封装。
+
     class xexp xprocess_memory_base
     {
     public:
@@ -58,10 +61,10 @@ namespace xuwuorg
 
         virtual bool open_process(DWORD);
 
-        bool read(XADDRESS, unsigned char*, SIZE_T, SIZE_T* = nullptr);
-        bool read(XADDRESS, unsigned char**, SIZE_T, SIZE_T* = nullptr);
-        bool read_offset(XADDRESS, unsigned char*, SIZE_T, SIZE_T* = nullptr);
-        bool read_offset(XADDRESS, unsigned char**, SIZE_T, SIZE_T* = nullptr);
+        bool read(XADDRESS, unsigned char*, SIZE_T, SIZE_T* = nullptr);//这个函数自己管理读取bufer的内存
+        bool read(XADDRESS, unsigned char**, SIZE_T, SIZE_T* = nullptr); //这个函数需要自己调用delete[] 释放内存
+        bool read_offset(XADDRESS, unsigned char*, SIZE_T, SIZE_T* = nullptr); //这个函数自己管理读取bufer的内存
+        bool read_offset(XADDRESS, unsigned char**, SIZE_T, SIZE_T* = nullptr); //这个函数需要自己调用delete[] 释放内存
     };
 
     class xexp xprocess_memory_write

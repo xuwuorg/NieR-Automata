@@ -185,29 +185,38 @@ CRefit::hp_9999()
     static LONGLONG hp_address = 0;
     if (hp_address == 0)
     {
-        bool bret = m_proc_mem.read_offset(0x160DF98, (unsigned char*)&hp_address, 0x8);
-        if (bret)
+        DWORD hp_offset = 0;
+        bool bret = m_proc_mem.read_offset(0x158A6EC, (unsigned char*)&hp_offset, 4);
+        if (bret && hp_offset != 0)
         {
-            bret = m_proc_mem.read(hp_address + 0xC0 + 0x8, (unsigned char*)&hp_address, 0x8);
-            if (bret)
+            hp_offset = hp_offset >> 8;
+            hp_offset &= 0x0000FFFF;
+            hp_offset = hp_offset << 4;
+             
+            bool bret = m_proc_mem.read_offset(0x160DF98, (unsigned char*)&hp_address, 0x8);
+            if (bret && (hp_address != 0))
             {
-                bret = m_proc_mem.read(hp_address + 0x60, (unsigned char*)&hp_address, 0x8);
-                if (bret)
+                bret = m_proc_mem.read(hp_address + hp_offset + 0x8, (unsigned char*)&hp_address, 0x8);
+                if (bret && (hp_address != 0))
                 {
-                    hp_address += 0x10668;
+                    bret = m_proc_mem.read(hp_address + 0x60, (unsigned char*)&hp_address, 0x8);
+                    if (bret && (hp_address != 0))
+                    {
+                        hp_address += 0x10668;
+                    }
                 }
             }
-        }
 
-        if (!bret)
-        {
-            hp_address = 0;
+            if (!bret)
+            {
+                hp_address = 0;
+            }
         }
     }
 
     if (hp_address != 0)
     {
-        ULONGLONG hp = 9999;
+        ULONGLONG hp = 0xFFFF;
         m_proc_mem.write(hp_address, (unsigned char*)&hp, 0x8, nullptr);
     }
 
@@ -284,7 +293,7 @@ CRefit::attack_9999()
             return;
         }
 
-        DWORD attack = 9999;
+        DWORD attack = 0xFFFF;
         m_proc_mem.write(attack_address, (unsigned char*)&attack, 0x4, nullptr);
     }
      
