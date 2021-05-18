@@ -34,17 +34,14 @@ int main()
                 refit.attack_9999();
                 break;
             case '5':
-                refit.speed_max();
-                break;
-            case '6':
                 refit.jmp_flyin();
                 break;
-            case '7':
+            case '6':
                 refit.module_1();
                 break;
-            case '8':
+            case '7':
                 refit.max_props();
-                break;
+                break; 
             default:
                 break;
             } 

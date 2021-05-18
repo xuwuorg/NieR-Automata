@@ -1,8 +1,7 @@
 /*
     ×÷Õß£º°¢Ðé
     ²©¿Í£ºhttp://www.xuwu.org
-    mail£ºxuwuorg@163.com
-    QQ £º474500991
+    mail£ºxuwuorg@163.com 
 */
 
 #pragma once 

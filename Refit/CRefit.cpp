@@ -24,8 +24,7 @@ CRefit::CRefit()
     m_start = false;
     m_invincible = false;
     m_hack_invincible = false;
-    m_attack = false;
-    m_speed = false;
+    m_attack = false; 
     m_flyin = false;  
     
     xuwuorg::memory_management::mem_zero(m_old_character, 0x6);
@@ -48,10 +47,9 @@ CRefit::help()
         << L"2. HP 9999       " << L"          -- 都有无敌了HP随便意思下" << NEW_LINE
         << L"3. Hack无敌      " << CURRENT_STATUS(m_hack_invincible) << L" -- 9S人物使用hack时不会掉血" << NEW_LINE
         << L"4. 攻击 999999   " << CURRENT_STATUS(m_attack) << L" -- 人物初始攻击给 999999" << NEW_LINE
-        << L"5. 召唤翔哥附体  " << CURRENT_STATUS(m_speed) << NEW_LINE
-        << L"6. 跳跃无限制    " << CURRENT_STATUS(m_flyin) << L" -- 不停的按跳跃你能上天" << NEW_LINE
-        << L"7. 芯片占1       " << L"          -- 当前背包的所有芯片大小设置为1" << NEW_LINE
-        << L"8. 背包物品99    " << L"          -- 当前背包中已有的物品数量设置为99" << NEW_LINE;
+        << L"5. 跳跃无限制    " << CURRENT_STATUS(m_flyin) << L" -- 不停的按跳跃你能上天" << NEW_LINE
+        << L"6. 芯片占1       " << L"          -- 当前背包的所有芯片大小设置为1" << NEW_LINE
+        << L"7. 背包物品99    " << L"          -- 当前背包中已有的物品数量设置为99" << NEW_LINE;
     wprintf(L"%s", help.get_str());
 }
 
@@ -257,43 +255,42 @@ CRefit::attack_9999()
     {
         return;
     }
-
-    //0000000140684CF | E8 7792A3FF             | call nierautomata.1400BDF70                      | 7. 攻击 [[[0x000000014160DF98] + 0xC0 + 0x8] + 0x60] + 0xAB8 + 0x20A0
-  
-    ULONGLONG attack_address = 0;
-    bool bret = m_proc_mem.read_offset(0x160DF98, (unsigned char*)&attack_address, 0x8);
-    if (bret)
+      
+    DWORD attack_offset = 0;
+    bool bret = m_proc_mem.read_offset(0x158A6EC, (unsigned char*)&attack_offset, 4);
+    if (bret && attack_offset != 0)
     {
-        bret = m_proc_mem.read(attack_address + 0xC0 + 0x8, (unsigned char*)&attack_address, 0x8);
-        if (bret)
+        attack_offset = attack_offset >> 8;
+        attack_offset &= 0x0000FFFF;
+        attack_offset = attack_offset << 4;
+
+        ULONGLONG attack_address = 0;
+        bool bret = m_proc_mem.read_offset(0x160DF98, (unsigned char*)&attack_address, 0x8);
+        if (bret && (attack_address != 0))
         {
-            bret = m_proc_mem.read(attack_address + 0x60, (unsigned char*)&attack_address, 0x8);
-            if (bret)
+            bret = m_proc_mem.read(attack_address + attack_offset + 0x8, (unsigned char*)&attack_address, 0x8);
+            if (bret && (attack_address != 0))
             {
-                attack_address += (0xAB8 + 0x20A0);
+                bret = m_proc_mem.read(attack_address + 0x60, (unsigned char*)&attack_address, 0x8);
+                if (bret && (attack_address != 0))
+                {
+                    attack_address += (0xAB8 + 0x20A0);
+                }
             }
         }
-    }
 
-    if (!bret)
-    {
-        return;
-    }
+        if (!bret || (attack_address == 0))
+        {
+            return;
+        }
 
-    DWORD attack = 999999;
-    m_proc_mem.write(attack_address, (unsigned char*)&attack, 0x4, nullptr);
+        DWORD attack = 9999;
+        m_proc_mem.write(attack_address, (unsigned char*)&attack, 0x4, nullptr);
+    }
+     
     return;
 }
-   
-void 
-CRefit::speed_max()
-{
-    if (!m_start)
-    {
-        return;
-    }
-}
-
+  
 void 
 CRefit::jmp_flyin()
 {
