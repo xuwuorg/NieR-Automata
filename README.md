@@ -10,6 +10,10 @@ NieR-Automata
 ![g](https://github.com/xuwuorg/NieR-Automata/blob/main/img/g.png "g")
 
 ## 日志
+## 2021/05/18
+修正HP设置逻辑
+修正人物攻击设置逻辑
+
 ## 2021/05/15
 4. 攻击 999999		     【关闭】
 
