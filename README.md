@@ -10,6 +10,11 @@ NieR-Automata
 ![g](https://github.com/xuwuorg/NieR-Automata/blob/main/img/g.png "g")
 
 ## 日志
+## 2021/05/19
+本来想录制gif上来的，可能是图片太大了没办法保存所以只能搞两张截图纪念了。
+![h](https://github.com/xuwuorg/NieR-Automata/blob/main/img/h.png "h")
+![i](https://github.com/xuwuorg/NieR-Automata/blob/main/img/i.png "i")
+
 ## 2021/05/18
 修正HP设置逻辑
 
